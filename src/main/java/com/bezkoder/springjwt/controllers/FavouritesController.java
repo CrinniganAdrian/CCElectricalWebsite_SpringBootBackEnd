@@ -1,6 +1,6 @@
 package com.bezkoder.springjwt.controllers;
 
-import com.bezkoder.springjwt.exceptions.FavouriteNotFoundException;
+import com.bezkoder.springjwt.exceptions.FavouriteNFException;
 import com.bezkoder.springjwt.exceptions.UserNFException;
 import com.bezkoder.springjwt.models.Favourites;
 import com.bezkoder.springjwt.models.User;
@@ -50,13 +50,13 @@ public class FavouritesController {
     @GetMapping("/favourites/{id}")
     Favourites getFavouriteById(@PathVariable Long id) {
         return favouritesRepository.findById(id)
-                .orElseThrow(() -> new FavouriteNotFoundException(id));
+                .orElseThrow(() -> new FavouriteNFException(id));
     }
 
     @DeleteMapping("/favourites/{id}")
     String deleteFavourite(@PathVariable Long id){
         if(!favouritesRepository.existsById(id)){
-            throw new FavouriteNotFoundException(id);
+            throw new FavouriteNFException(id);
         }
         favouritesRepository.deleteById(id);
         return  "Favourite with id "+id+" has been deleted success.";
