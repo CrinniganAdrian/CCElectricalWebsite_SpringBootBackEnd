@@ -1,7 +1,7 @@
 package com.bezkoder.springjwt.exceptions;
 
-public class ItemNotFoundException extends RuntimeException{
-    public ItemNotFoundException(Long id){
+public class ItemNFException extends RuntimeException{
+    public ItemNFException(Long id){
         super("Could not find the item with id "+ id);
     }
 }
