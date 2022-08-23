@@ -11,7 +11,7 @@ import com.bezkoder.springjwt.models.User;
 import com.bezkoder.springjwt.repository.UserRepository;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsSImpl implements UserDetailsService {
   @Autowired
   UserRepository userRepository;
 
