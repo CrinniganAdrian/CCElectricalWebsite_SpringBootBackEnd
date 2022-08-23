@@ -93,6 +93,7 @@ public class UserDetailsImpl implements UserDetails {
     return true;
   }
 
+  /*
   @Override
   public boolean equals(Object o) {
     if (this == o)
@@ -102,4 +103,6 @@ public class UserDetailsImpl implements UserDetails {
     UserDetailsImpl user = (UserDetailsImpl) o;
     return Objects.equals(id, user.id);
   }
+
+   */
 }
