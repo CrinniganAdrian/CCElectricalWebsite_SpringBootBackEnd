@@ -1,6 +1,6 @@
 package com.bezkoder.springjwt.controllers;
 
-import com.bezkoder.springjwt.exceptions.ItemNotFoundException;
+import com.bezkoder.springjwt.exceptions.ItemNFException;
 import com.bezkoder.springjwt.models.Item;
 import com.bezkoder.springjwt.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class ItemController {
     @GetMapping("/items/{id}")
     Item getItemById(@PathVariable Long id) {
         return itemRepository.findById(id)
-                .orElseThrow(() -> new ItemNotFoundException(id));
+                .orElseThrow(() -> new ItemNFException(id));
     }
 
     @PutMapping("/items/{id}")
@@ -41,13 +41,13 @@ public class ItemController {
                     item.setDescription(newItem.getDescription());
                     item.setImageUrl(newItem.getImageUrl());
                     return itemRepository.save(item);
-                }).orElseThrow(() -> new ItemNotFoundException(id));
+                }).orElseThrow(() -> new ItemNFException(id));
     }
 
     @DeleteMapping("/items/{id}")
     String deleteItem(@PathVariable Long id){
         if(!itemRepository.existsById(id)){
-            throw new ItemNotFoundException(id);
+            throw new ItemNFException(id);
         }
         itemRepository.deleteById(id);
         return  "Item with id "+id+" has been deleted success.";

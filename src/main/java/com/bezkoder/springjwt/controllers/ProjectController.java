@@ -1,6 +1,6 @@
 package com.bezkoder.springjwt.controllers;
 
-import com.bezkoder.springjwt.exceptions.ProjectNotFoundException;
+import com.bezkoder.springjwt.exceptions.ProjectNFException;
 import com.bezkoder.springjwt.models.Project;
 import com.bezkoder.springjwt.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class ProjectController {
     @GetMapping("/projects/{id}")
     Project getProjectById(@PathVariable Long id) {
         return projectRepository.findById(id)
-                .orElseThrow(() -> new ProjectNotFoundException(id));
+                .orElseThrow(() -> new ProjectNFException(id));
     }
 
     @PutMapping("/projects/{id}")
@@ -39,13 +39,13 @@ public class ProjectController {
                     project.setDescription(newProject.getDescription());
                     project.setImageUrl(newProject.getImageUrl());
                     return projectRepository.save(project);
-                }).orElseThrow(() -> new ProjectNotFoundException(id));
+                }).orElseThrow(() -> new ProjectNFException(id));
     }
 
     @DeleteMapping("/projects/{id}")
     String deleteProject(@PathVariable Long id){
         if(!projectRepository.existsById(id)){
-            throw new ProjectNotFoundException(id);
+            throw new ProjectNFException(id);
         }
         projectRepository.deleteById(id);
         return  "Project with id "+id+" has been deleted success.";
