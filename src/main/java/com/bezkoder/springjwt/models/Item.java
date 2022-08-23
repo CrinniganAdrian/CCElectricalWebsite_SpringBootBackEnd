@@ -13,6 +13,9 @@ import javax.persistence.*;
 //@NoArgsConstructor
 @AllArgsConstructor
 @Builder
+/**
+ *  This is the item entity class
+ */
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

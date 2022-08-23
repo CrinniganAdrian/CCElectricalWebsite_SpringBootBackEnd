@@ -4,6 +4,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "roles")
+/**
+ *  This is the role entity class
+ */
 public class Role {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

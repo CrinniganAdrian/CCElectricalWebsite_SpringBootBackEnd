@@ -13,6 +13,9 @@ import javax.persistence.Id;
 //@NoArgsConstructor
 @AllArgsConstructor
 @Builder
+/**
+ *  This is the service entity class
+ */
 public class Service {
 
     @Id

@@ -13,6 +13,9 @@ import javax.persistence.Id;
 //@NoArgsConstructor
 @AllArgsConstructor
 @Builder
+/**
+ *  This is the project entity class
+ */
 public class Project {
 
     @Id
