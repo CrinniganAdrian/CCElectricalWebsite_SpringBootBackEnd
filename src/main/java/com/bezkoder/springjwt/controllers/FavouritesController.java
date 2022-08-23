@@ -1,7 +1,7 @@
 package com.bezkoder.springjwt.controllers;
 
 import com.bezkoder.springjwt.exceptions.FavouriteNotFoundException;
-import com.bezkoder.springjwt.exceptions.UserNotFoundException;
+import com.bezkoder.springjwt.exceptions.UserNFException;
 import com.bezkoder.springjwt.models.Favourites;
 import com.bezkoder.springjwt.models.User;
 import com.bezkoder.springjwt.repository.FavouritesRepository;
@@ -36,7 +36,7 @@ public class FavouritesController {
     @GetMapping("/user/{id}")
     User getUserById(@PathVariable Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(id));
+                .orElseThrow(() -> new UserNFException(id));
     }
 
 
