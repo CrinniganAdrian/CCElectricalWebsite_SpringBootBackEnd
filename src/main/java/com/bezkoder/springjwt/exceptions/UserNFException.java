@@ -1,7 +1,7 @@
 package com.bezkoder.springjwt.exceptions;
 
-public class UserNotFoundException extends RuntimeException{
-    public UserNotFoundException(Long id){
+public class UserNFException extends RuntimeException{
+    public UserNFException(Long id){
         super("Could not find the user with id "+ id);
     }
 }
