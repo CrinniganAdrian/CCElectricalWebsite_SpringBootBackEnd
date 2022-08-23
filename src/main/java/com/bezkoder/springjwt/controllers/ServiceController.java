@@ -1,6 +1,6 @@
 package com.bezkoder.springjwt.controllers;
 
-import com.bezkoder.springjwt.exceptions.ServiceNotFoundException;
+import com.bezkoder.springjwt.exceptions.ServiceNFException;
 import com.bezkoder.springjwt.models.Service;
 import com.bezkoder.springjwt.repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class ServiceController {
     @GetMapping("/ccservices/{id}")
     Service getServiceById(@PathVariable Long id) {
         return serviceRepository.findById(id)
-                .orElseThrow(() -> new ServiceNotFoundException(id));
+                .orElseThrow(() -> new ServiceNFException(id));
     }
 
     @PutMapping("/ccservices/{id}")
@@ -39,13 +39,13 @@ public class ServiceController {
                     service.setDescription(newService.getDescription());
                     service.setImageUrl(newService.getImageUrl());
                     return serviceRepository.save(service);
-                }).orElseThrow(() -> new ServiceNotFoundException(id));
+                }).orElseThrow(() -> new ServiceNFException(id));
     }
 
     @DeleteMapping("/ccservices/{id}")
     String deleteService(@PathVariable Long id){
         if(!serviceRepository.existsById(id)){
-            throw new ServiceNotFoundException(id);
+            throw new ServiceNFException(id);
         }
         serviceRepository.deleteById(id);
         return  "Service with id "+id+" has been deleted success.";
