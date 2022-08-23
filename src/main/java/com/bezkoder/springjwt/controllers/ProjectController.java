@@ -4,6 +4,7 @@ import com.bezkoder.springjwt.exceptions.ProjectNFException;
 import com.bezkoder.springjwt.models.Project;
 import com.bezkoder.springjwt.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,6 +43,7 @@ public class ProjectController {
                 }).orElseThrow(() -> new ProjectNFException(id));
     }
 
+    /*
     @DeleteMapping("/projects/{id}")
     String deleteProject(@PathVariable Long id){
         if(!projectRepository.existsById(id)){
@@ -51,6 +53,15 @@ public class ProjectController {
         return  "Project with id "+id+" has been deleted success.";
     }
 
+     */
 
+
+    @DeleteMapping(value = "projects/{id}")
+    public void deleteProjectById(@PathVariable(value = "id") Long projectId) throws ChangeSetPersister.NotFoundException {
+        if (!projectRepository.findById(projectId).isPresent()) {
+            throw new ChangeSetPersister.NotFoundException();
+        }
+        projectRepository.deleteById(projectId);
+    }
 
 }

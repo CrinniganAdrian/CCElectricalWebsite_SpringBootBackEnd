@@ -4,6 +4,7 @@ import com.bezkoder.springjwt.exceptions.ServiceNFException;
 import com.bezkoder.springjwt.models.Service;
 import com.bezkoder.springjwt.repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,6 +43,7 @@ public class ServiceController {
                 }).orElseThrow(() -> new ServiceNFException(id));
     }
 
+    /*
     @DeleteMapping("/ccservices/{id}")
     String deleteService(@PathVariable Long id){
         if(!serviceRepository.existsById(id)){
@@ -51,6 +53,15 @@ public class ServiceController {
         return  "Service with id "+id+" has been deleted success.";
     }
 
+     */
 
+
+    @DeleteMapping(value = "ccservices/{id}")
+    public void deleteServiceById(@PathVariable(value = "id") Long serviceId) throws ChangeSetPersister.NotFoundException {
+        if (!serviceRepository.findById(serviceId).isPresent()) {
+            throw new ChangeSetPersister.NotFoundException();
+        }
+        serviceRepository.deleteById(serviceId);
+    }
 
 }

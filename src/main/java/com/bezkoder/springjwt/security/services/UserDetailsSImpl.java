@@ -12,7 +12,7 @@ import com.bezkoder.springjwt.repository.UserRepository;
 
 @Service
 public class UserDetailsSImpl implements UserDetailsService {
-  @Autowired
+  @Autowired(required = false)
   UserRepository userRepository;
 
   @Override

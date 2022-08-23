@@ -4,6 +4,7 @@ import com.bezkoder.springjwt.exceptions.ItemNFException;
 import com.bezkoder.springjwt.models.Item;
 import com.bezkoder.springjwt.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,25 +17,25 @@ public class ItemController {
     private ItemRepository itemRepository;
 
     @PostMapping("/items")
-    Item newItem(@RequestBody Item newItem)
+    public Item newItem(@RequestBody Item newItem)
     {
         return itemRepository.save(newItem);
     }
 
     @GetMapping("/items")
-    List<Item> getAllItems()
+    public List<Item> getAllItems()
     {
         return itemRepository.findAll();
     }
 
     @GetMapping("/items/{id}")
-    Item getItemById(@PathVariable Long id) {
+    public Item getItemById(@PathVariable Long id) {
         return itemRepository.findById(id)
                 .orElseThrow(() -> new ItemNFException(id));
     }
 
     @PutMapping("/items/{id}")
-    Item updateItem(@RequestBody Item newItem, @PathVariable Long id) {
+    public Item updateItem(@RequestBody Item newItem, @PathVariable Long id) {
         return itemRepository.findById(id)
                 .map(item -> {
                     item.setName(newItem.getName());
@@ -44,13 +45,24 @@ public class ItemController {
                 }).orElseThrow(() -> new ItemNFException(id));
     }
 
+    /*
     @DeleteMapping("/items/{id}")
-    String deleteItem(@PathVariable Long id){
+    public String deleteItem(@PathVariable Long id){
         if(!itemRepository.existsById(id)){
             throw new ItemNFException(id);
         }
         itemRepository.deleteById(id);
         return  "Item with id "+id+" has been deleted success.";
+    }
+     */
+
+
+    @DeleteMapping(value = "items/{id}")
+    public void deleteItemById(@PathVariable(value = "id") Long itemId) throws ChangeSetPersister.NotFoundException {
+        if (!itemRepository.findById(itemId).isPresent()) {
+            throw new ChangeSetPersister.NotFoundException();
+        }
+        itemRepository.deleteById(itemId);
     }
 
 

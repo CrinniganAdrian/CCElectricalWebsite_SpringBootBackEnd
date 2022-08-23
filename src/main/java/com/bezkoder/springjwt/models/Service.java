@@ -1,10 +1,18 @@
 package com.bezkoder.springjwt.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
+@Data
+//@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Service {
 
     @Id
