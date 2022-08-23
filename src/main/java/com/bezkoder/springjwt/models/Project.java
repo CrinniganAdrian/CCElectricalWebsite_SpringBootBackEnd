@@ -3,7 +3,6 @@ package com.bezkoder.springjwt.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 public class Project {
@@ -14,6 +13,15 @@ public class Project {
     private String name;
     private String description;
     private String imageUrl;
+
+    public Project() {
+    }
+
+    public Project(String name, String description, String imageUrl) {
+        this.name = name;
+        this.description = description;
+        this.imageUrl = imageUrl;
+    }
 
     public Long getId() {
         return id;

@@ -3,7 +3,6 @@ package com.bezkoder.springjwt.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 public class Service {
@@ -14,6 +13,15 @@ public class Service {
     private String name;
     private String description;
     private String imageUrl;
+
+    public Service() {
+    }
+
+    public Service(String name, String description, String imageUrl) {
+        this.name = name;
+        this.description = description;
+        this.imageUrl = imageUrl;
+    }
 
     public Long getId() {
         return id;
