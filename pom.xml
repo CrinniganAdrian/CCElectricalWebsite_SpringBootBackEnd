@@ -12,7 +12,7 @@
 	<groupId>com.bezkoder</groupId>
 	<artifactId>spring-boot-security-jwt</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>spring-boot-security-jwt</name>
 	<description>Demo project for Spring Boot Security - JWT</description>
 
@@ -78,7 +78,15 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-    </dependencies>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-tomcat -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<version>2.7.3</version>
+		</dependency>
+
+	</dependencies>
 
 	<reporting>
 		<plugins>
@@ -91,6 +99,7 @@
 	</reporting>
 
 	<build>
+		<finalName>${artifactId}}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
