@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 /**
  *  This is the project entity class
@@ -14,7 +15,7 @@ import javax.persistence.Id;
 @Builder
 public class Project {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String description;

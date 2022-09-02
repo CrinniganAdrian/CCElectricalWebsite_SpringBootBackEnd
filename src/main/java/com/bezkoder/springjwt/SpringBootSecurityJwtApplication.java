@@ -1,5 +1,4 @@
 package com.bezkoder.springjwt;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -10,5 +9,4 @@ public class SpringBootSecurityJwtApplication extends SpringBootServletInitializ
 	public static void main(String[] args) {
     SpringApplication.run(SpringBootSecurityJwtApplication.class, args);
 	}
-
 }
